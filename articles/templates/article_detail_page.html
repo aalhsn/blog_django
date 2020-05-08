@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{article.title}} </title>
+</head>
+<body>
+    <h1>{{article.title}}</h1>
+    <h3>{{article.content}}</h3>
+    <br>
+    <p>Created On: {{article.created_on}}</p>
+    <p>Updated On: {{article.updated_on}}</p>
+    <p>Written By: {{article.author}}</p>
+    <br>
+    <a href="{% url 'update' article.id %}">Update</a>
+</body>
+</html>
