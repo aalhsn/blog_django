@@ -7,6 +7,8 @@ class Article(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     author = models.CharField(max_length=120)
+    img = models.ImageField()
+    profile_img = models.ImageField()
 
     def __str__(self):
         return self.title+", "+self.author

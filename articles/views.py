@@ -4,6 +4,7 @@ from .models import Article
 from .forms import ArticleForm, ArticleUpdateForm
 
 
+
 # Create your views here.
 def homepage_view(request):
     context = {
@@ -37,7 +38,7 @@ def create_view(request):
     form = ArticleForm()
 
     if request.method == "POST":
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("articles-list")
@@ -51,7 +52,7 @@ def update_view(request, article_id ):
     form = ArticleUpdateForm(instance=article)
 
     if request.method == "POST":
-        form = ArticleUpdateForm(request.POST, instance=article)
+        form = ArticleUpdateForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
             form.save()
             return redirect('articles-list')
@@ -61,3 +62,8 @@ def update_view(request, article_id ):
         "form":form
     }
     return render(request, 'update_page.html', context)
+
+def delete_article(request, article_id):
+    article = Article.objects.get(id=article_id).delete()
+    return redirect('articles-list')
+

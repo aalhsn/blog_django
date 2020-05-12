@@ -1,23 +1,24 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> List </title>
-</head>
-<body>
-    <a href="{% url 'home' %}">Homepage</a> <a href="{% url 'create' %}">New Article</a>
-    {% for article in articles %}
-        <ul style=" list-style-type: none;" >
-            <li>
-                <h1>{{article.title}}</h1>
-                <p> Author: {{article.author}}</p>
-                <a href="{% url 'article-detials' article.id %}">View Article</a>
-            </li>
-            <li>
-                
-            </li>
-        </ul><br>
-    {% endfor %}
-</body>
-</html>
+{% block title %}
+   Articles List
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+{% for article in articles %}
+<div class="col-lx-4 col-lg-4 col-m-4 col-sm-12 col-12 ml-5">
+    <div class="card mt-5 mb-3" style="width: 18rem;">
+        <img src="{{article.img.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{article.title}}</h5>
+        <p class="card-text">Author: {{article.author}}</p>
+        <a href="{% url 'article-detials' article.id %}" class="btn btn-primary">View</a>
+        </div>
+  </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock content %}
+

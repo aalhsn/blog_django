@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> {{article.title}} </title>
-</head>
-<body>
-    <h1>{{article.title}}</h1>
-    <h3>{{article.content}}</h3>
-    <br>
-    <p>Created On: {{article.created_on}}</p>
-    <p>Updated On: {{article.updated_on}}</p>
-    <p>Written By: {{article.author}}</p>
-    <br>
-    <a href="{% url 'update' article.id %}">Update</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    {{article.title}}, {{article.author}}
+{% endblock title %}
+
+{% block content %}
+<img src="{{article.img.url}}" class="img-fluid" alt="Responsive image">
+<h1 class="display-2">{{article.title}}</h1>
+<div class="media mt-3">
+    <img src="{{article.profile_img.url}}" height="64" class="mr-3" alt="...">
+    <div class="media-body">
+      <h5 class="mt-0">Written By:</h5>
+      {{article.author}}
+    </div>
+  </div>
+<hr>
+<p>{{article.content}}</p>
+<br>
+<p class="text-muted" style="font-size: smaller;">Created On: {{article.created_on}}</p>
+<p class="text-muted" style="font-size: smaller;">Updated On: {{article.updated_on}}</p>
+<br>
+<a  class="btn btn-outline-warning float-right ml-3" href="{% url 'update' article.id %}">Update</a>
+<a  class="btn btn-outline-danger float-right" href="{% url 'delete' article.id %}">Delete</a>
+
+{% endblock content %}
