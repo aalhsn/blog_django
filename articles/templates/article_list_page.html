@@ -14,7 +14,10 @@
         <div class="card-body">
         <h5 class="card-title">{{article.title}}</h5>
         <p class="card-text">Author: {{article.author}}</p>
-        <a href="{% url 'article-detials' article.id %}" class="btn btn-primary">View</a>
+        {% for type in article.food_type.all %}
+        <span class="badge badge-secondary">{{type}}</span>
+        {% endfor %}
+        <a href="{% url 'article-detials' article.id %}" class="btn btn-primary mt-3">View</a>
         </div>
   </div>
   </div>

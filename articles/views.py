@@ -21,8 +21,10 @@ def homepage_view(request):
 
 def article_detail(request, article_id):
     article = Article.objects.get(id=article_id)
+    food_types = article.food_type.all()
     context = {
-        "article":article
+        "article":article,
+        "food_types":food_types
     }
     return render(request, 'article_detail_page.html', context)
 

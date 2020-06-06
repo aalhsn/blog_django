@@ -7,8 +7,11 @@
 {% block content %}
 <img src="{{article.img.url}}" class="img-fluid" alt="Responsive image">
 <h1 class="display-2">{{article.title}}</h1>
+{% for type in food_types %}
+<span class="badge badge-primary">{{type}}</span>
+{% endfor %}
 <div class="media mt-3">
-    <img src="{{article.profile_img.url}}" height="64" class="mr-3" alt="...">
+    <img src="{{article.author.profile_img.url}}" height="64" class="mr-3" alt="...">
     <div class="media-body">
       <h5 class="mt-0">Written By:</h5>
       {{article.author}}
