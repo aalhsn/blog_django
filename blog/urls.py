@@ -17,16 +17,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from articles import views
+from articles.views import ArticlesListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',views.homepage_view, name="home"),
-    path('list/',views.article_list, name="articles-list"),
-    path('details/<int:article_id>',views.article_detail, name="article-detials"),
-    path('create/',views.create_view, name="create"),
-    path('update/<int:article_id>',views.update_view, name="update"),
-    path('delete/<int:article_id>',views.delete_article, name="delete"),
+    # path('home/',views.homepage_view, name="home"),
+    path('list/',ArticlesListView.as_view(), name="articles-list"),
+    # path('details/<int:article_id>',views.article_detail, name="article-detials"),
+    # path('create/',views.create_view, name="create"),
+    # path('update/<int:article_id>',views.update_view, name="update"),
+    # path('delete/<int:article_id>',views.delete_article, name="delete"),
 
 ]
 

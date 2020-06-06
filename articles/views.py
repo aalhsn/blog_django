@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from rest_framework.generics import ListAPIView
+from .serializers import ArticlesListSerializer
 from .models import Article
 from .forms import ArticleForm, ArticleUpdateForm
 
@@ -28,12 +30,9 @@ def article_detail(request, article_id):
     }
     return render(request, 'article_detail_page.html', context)
 
-def article_list(request):
-    articles = Article.objects.all()
-    context = {
-        "articles": articles,
-    }
-    return render(request, 'article_list_page.html', context)
+class ArticlesListView(ListAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticlesListSerializer
 
 
 def create_view(request):
